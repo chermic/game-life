@@ -1,5 +1,7 @@
-import { Cell } from "../cell/cell";
+import { useState } from "react";
+import { Row } from "../row/row";
 import styles from "./field.module.css";
+import { getGameField } from "./utils";
 
 export const Field = ({
   columnsCount,
@@ -8,13 +10,22 @@ export const Field = ({
   columnsCount: number;
   rowsCount: number;
 }) => {
+  const [gameField, setGameField] = useState(
+    getGameField(columnsCount, rowsCount)
+  );
+
+  const handleNextStateButtonClick = () => {
+    setGameField((currentGameField) => {
+      
+    })
+  };
+
   return (
     <div className={styles.field}>
-      {Array.from({ length: columnsCount }, (_, column) =>
-        Array.from({ length: rowsCount }, (_, row) => (
-          <Cell key={`cell-${column}-${row}`} />
-        ))
-      )}
+      {Array.from({ length: rowsCount }, (_, column) => (
+        <Row cells={Array.from({ length: columnsCount }, (_) => 0)} />
+      ))}
+      <button onClick={handleNextStateButtonClick}>Next state</button>
     </div>
   );
 };
