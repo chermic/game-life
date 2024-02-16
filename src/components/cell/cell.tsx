@@ -1,6 +1,11 @@
 import cn from "classnames";
 import styles from "./cell.module.css";
 
-export const Cell = ({ alive }: { alive: boolean }) => {
-  return <div className={cn(styles.cell, { [styles.alive]: alive })}></div>;
+type Props = {
+  alive: boolean;
+  onCellClick(): void;
+};
+
+export const Cell = ({ alive, onCellClick }: Props) => {
+  return <div className={cn(styles.cell, { [styles.alive]: alive })} onClick={onCellClick}></div>;
 };

@@ -1,8 +1,8 @@
 import styles from "./app.module.css";
-import { Field } from "./components/field/field";
+import { Game } from './components/game/game';
 
 function App() {
-  return <Field columnsCount={10} rowsCount={10} />;
+  return <Game columnsCount={10} rowsCount={10} />;
 }
 
 export default App;

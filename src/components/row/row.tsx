@@ -1,11 +1,22 @@
+import { FC } from "react";
 import { Cell } from "../cell/cell";
+import { CellState } from "../types";
 import styles from "./row.module.css";
 
-export const Row = ({ cells }: { cells: (0 | 1)[] }) => {
+type Props = {
+  rowCellsState: CellState[];
+  onCellClick(column: number): void;
+};
+
+export const Row: FC<Props> = ({ rowCellsState: cells, onCellClick }) => {
   return (
     <div className={styles.row}>
-      {cells.map((isAlive, cellIndex) => (
-        <Cell alive={isAlive === 1} key={cellIndex} />
+      {cells.map((isAlive, column) => (
+        <Cell
+          alive={isAlive === 1}
+          key={column}
+          onCellClick={() => onCellClick(column)}
+        />
       ))}
     </div>
   );
